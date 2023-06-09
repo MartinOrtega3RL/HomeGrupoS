@@ -7,7 +7,7 @@ import ContactForm from "../Components/Contactarnos";
 import Historia from "../Components/Historia";
 import AboutUs from "../Components/AboutUs";
 
-function App() {
+function Home() {
   const [selectedItem, setSelectedItem] = useState("Inicio");
 
   useEffect(() => {
@@ -196,4 +196,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

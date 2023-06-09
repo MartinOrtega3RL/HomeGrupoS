@@ -1,5 +1,6 @@
 import React from "react";
 import Logo from "../Assets/Images/Logo.png";
+import "bootstrap/dist/css/bootstrap.css";
 
 const AboutUs = () => {
   return (
