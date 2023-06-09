@@ -1,27 +1,36 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
 import { Contexto } from "../context/context";
-
-import { useState } from "react";
-
-import { useContext } from "react";
-
 import axios from "axios";
 
-
 const MisVehiculos = () => {
-  const { tarjeta} = useContext(Contexto);
+  const { tarjeta } = useContext(Contexto);
 
   const generarClaveAleatoria = () => {
-    return Math.random().toString(36).substr(2, 9);}
+    return Math.random().toString(36).substr(2, 9);
+  };
 
+  useEffect(() => {
+    const obtenerDatos = async () => {
+      try {
+        const url =
+          "http://localhost/PHP/React/mypolice/src/Services/ObtenerDatos.php";
+        const response = await axios.get(url);
+        const datos = response.data;
+        console.log(datos);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
+    obtenerDatos();
+  }, []);
 
   return (
     <CardContainer>
       {tarjeta.map((tarjetas, index) => (
         <div key={generarClaveAleatoria()}>
-          <Title>Cobertura vehiculo {index+1}</Title>
+          <Title>Cobertura vehiculo {index + 1}</Title>
           <DetailsContainer>
             <DetailItem>
               <Label>Titular:</Label>
@@ -37,7 +46,6 @@ const MisVehiculos = () => {
               <Value>
                 <h3>
                   {tarjetas.nombre_agente}
-
                   {tarjetas.apellido_agente}
                 </h3>
               </Value>
